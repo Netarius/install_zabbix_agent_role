@@ -1,0 +1,4 @@
+---
+# vars file for create-disk-partition-role
+
+zabbix_agent_url: https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-1+debian10_all.deb

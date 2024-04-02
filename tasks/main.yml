@@ -1,0 +1,42 @@
+---
+# tasks file for create-disk-partition-role
+
+##################################### Copy zabbix DEB package #########################################
+- name: Copy zabbix DEB package
+  copy:
+        src: ./zabbix-agent2.deb
+        dest: /home/sadmin/
+  
+########################################################################################################
+
+##################################### Install DEB package of zabbix ####################################
+- name: Install deb package of zabbix 
+  apt:
+        deb: /home/sadmin/zabbix-agent2.deb
+  
+########################################################################################################
+
+##################################### Delete deb package ###############################################
+- name: Delete deb package
+  file:
+        path: /home/sadmin/zabbix-agent2.deb
+        state: absent
+    
+#######################################################################################################
+
+##################################### Create config file from template #################################
+- name: Create config file from template
+  template:
+           src: zabbix_agent2.conf.j2
+           dest: /etc/zabbix/zabbix_agent2.conf
+
+########################################################################################################
+
+##################################### Start zabbix-agent2 service ######################################
+- name: Start zabbix-agent2 service
+  service:
+            name: zabbix-agent2
+            state: restarted
+            enabled: yes
+
+########################################################################################################
